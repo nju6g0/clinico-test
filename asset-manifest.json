@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/clinico-test/static/css/main.fa349b6b.css",
+    "main.js": "/clinico-test/static/js/main.796b1d9f.js",
+    "index.html": "/clinico-test/index.html",
+    "main.fa349b6b.css.map": "/clinico-test/static/css/main.fa349b6b.css.map",
+    "main.796b1d9f.js.map": "/clinico-test/static/js/main.796b1d9f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa349b6b.css",
+    "static/js/main.796b1d9f.js"
+  ]
+}
