@@ -122,10 +122,12 @@ function App() {
   };
 
   const handleSearch = (code) => {
+    if (!code) return;
     fetchPolicyHolders(code);
   };
 
   const handleClickNode = (code) => {
+    if (!code) return;
     setSearchCode(code);
     fetchPolicyHolders(code);
   };
