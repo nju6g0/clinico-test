@@ -20,8 +20,10 @@ function renderTreeNode({
   return (
     <g>
       <foreignObject {...foreignObjectProps}>
-        <div className={`treeNode ${nodeDatum.role}`} onClick={handleClick}>
-          <p>保戶編號：{nodeDatum.code}</p>
+        <div className={`treeNode ${nodeDatum.role}`}>
+          <p className="insuredCode" onClick={handleClick}>
+            保戶編號：{nodeDatum.code}
+          </p>
           <p>推薦人編號：{nodeDatum.introducer_code}</p>
           <h3 style={{ textAlign: "center" }}>{nodeDatum.name}</h3>
           {showUp && (
