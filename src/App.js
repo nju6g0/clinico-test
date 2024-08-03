@@ -1,8 +1,9 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-import { getData } from "./data/getData";
+import { getFakeData } from "./service/getFakeData";
 import Tree from "./components/tree";
+import policyHoldersService from "./service/policyHolders.service";
 
 function sortByDate(arr) {
   const sortedArr = arr.sort((a, b) => {
@@ -60,13 +61,20 @@ function organizeChildren(arr) {
   return result;
 }
 function organizeData({ l, r, code, ...rest }) {
+  l.forEach((el) => {
+    el.role = el.introducer_code === code ? "direct" : "secondhand";
+  });
+  r.forEach((el) => {
+    el.role = el.introducer_code === code ? "direct" : "secondhand";
+  });
   const left = organizeChildren(sortByDate(l));
   const right = organizeChildren(sortByDate(r));
 
   const arr = [
     {
-      code,
       ...rest,
+      code,
+      role: "main",
       children: [left, right],
     },
   ];
@@ -78,34 +86,57 @@ function App() {
   const [searchCode, setSearchCode] = useState("P001");
   const [policyHolders, setPolicyHolders] = useState([]);
 
+  async function fetchPolicyHolders(code) {
+    try {
+      let response = await policyHoldersService.searchHolder(code);
+      response = getFakeData(code);
+
+      if (Object.keys(response).length === 0) {
+        setPolicyHolders([]);
+        return;
+      }
+      setPolicyHolders(organizeData(response));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fetchTopPolicyHolders(code) {
+    try {
+      let response = await policyHoldersService.getTopHolder(code);
+      response = getFakeData(code);
+
+      if (Object.keys(response).length === 0) {
+        setPolicyHolders([]);
+        return;
+      }
+
+      setPolicyHolders(organizeData(response));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const changeInputValue = (e) => {
     setSearchCode(e.target.value);
   };
+
   const handleSearch = (code) => {
-    const response = getData(code);
-
-    if (Object.keys(response).length === 0) {
-      setPolicyHolders([]);
-      return;
-    }
-
-    response.role = "main";
-    response.l.forEach((el) => {
-      el.role = el.introducer_code === code ? "direct" : "secondhand";
-    });
-    response.r.forEach((el) => {
-      el.role = el.introducer_code === code ? "direct" : "secondhand";
-    });
-    setPolicyHolders(organizeData(response));
+    fetchPolicyHolders(code);
   };
 
   const handleClickNode = (code) => {
     setSearchCode(code);
-    handleSearch(code);
+    fetchPolicyHolders(code);
+  };
+
+  const handleClickTop = (code) => {
+    setSearchCode("");
+    fetchTopPolicyHolders(code);
   };
 
   useEffect(() => {
-    handleSearch(searchCode);
+    fetchPolicyHolders(searchCode);
   }, []);
 
   return (
@@ -130,7 +161,11 @@ function App() {
       {policyHolders.length === 0 ? (
         <div>查無保戶資料</div>
       ) : (
-        <Tree data={policyHolders} onClickNode={handleClickNode} />
+        <Tree
+          data={policyHolders}
+          onClickNode={handleClickNode}
+          onClickTop={handleClickTop}
+        />
       )}
     </div>
   );

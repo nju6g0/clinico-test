@@ -162,7 +162,8 @@ const insured = [
   },
 ];
 
-export function getData(code) {
+// 為了模擬 api回傳的資料
+export function getFakeData(code) {
   let result = {};
 
   // 找出查詢的保戶

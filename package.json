@@ -2,10 +2,13 @@
   "name": "clinico-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nju6g0.github.io/clinico-test",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.3",
+    "gh-pages": "^6.1.1",
     "query-string": "^9.1.0",
     "react": "^18.3.1",
     "react-d3-tree": "^3.6.2",
@@ -18,7 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "react-scripts build && gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "server": "json-server --watch db.json --routes routes.json --port 3004"
   },
   "eslintConfig": {
     "extends": [
@@ -37,8 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.1.1"
   }
 }

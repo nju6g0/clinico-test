@@ -1,0 +1,54 @@
+{
+  "policyholders": {
+    "id": 2,
+    "code": "P002",
+    "name": "Bob",
+    "registration_date": "2023-02-01",
+    "introducer_code": "P001",
+    "l": [
+      {
+        "id": 2,
+        "code": "P077",
+        "name": "Hani",
+        "registration_date": "2023-02-01",
+        "introducer_code": "P002"
+      }
+    ],
+    "r": [
+      {
+        "id": 3,
+        "code": "P088",
+        "name": "Niha",
+        "registration_date": "2023-03-01",
+        "introducer_code": "P002"
+      }
+    ]
+  },
+  "topPolicyholder": [
+    {
+      "id": 1,
+      "code": "P001",
+      "name": "Alice",
+      "registration_date": "2023-01-01",
+      "introducer_code": null,
+      "l": [
+        {
+          "id": 2,
+          "code": "P002",
+          "name": "Bob",
+          "registration_date": "2023-02-01",
+          "introducer_code": "P001"
+        }
+      ],
+      "r": [
+        {
+          "id": 3,
+          "code": "P003",
+          "name": "Charlie",
+          "registration_date": "2023-03-01",
+          "introducer_code": "P001"
+        }
+      ]
+    }
+  ]
+}

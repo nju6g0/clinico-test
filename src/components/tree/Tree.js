@@ -2,14 +2,19 @@ import D3Tree from "react-d3-tree";
 
 import { useCenteredTree } from "./helpers";
 
-function renderTreeNode({ nodeDatum, foreignObjectProps, onClickNode }) {
+function renderTreeNode({
+  nodeDatum,
+  foreignObjectProps,
+  onClickNode,
+  onClickTop,
+}) {
   const handleClick = () => {
     if (nodeDatum.role === "main") return;
     onClickNode(nodeDatum.code);
   };
   const handleClickUp = (e) => {
     e.stopPropagation();
-    onClickNode(nodeDatum.introducer_code);
+    onClickTop(nodeDatum.introducer_code);
   };
   const showUp = nodeDatum.role === "main" && nodeDatum.introducer_code;
   return (
@@ -30,7 +35,7 @@ function renderTreeNode({ nodeDatum, foreignObjectProps, onClickNode }) {
   );
 }
 
-const Tree = ({ data, onClickNode }) => {
+const Tree = ({ data, ...rest }) => {
   const [translate, containerRef] = useCenteredTree();
   const foreignObjectProps = { width: 200, height: 200, x: -100, y: -50 };
   return (
@@ -43,7 +48,7 @@ const Tree = ({ data, onClickNode }) => {
         nodeSize={{ x: 220, y: 200 }}
         collapsible={false}
         renderCustomNodeElement={(rd3tProps) =>
-          renderTreeNode({ ...rd3tProps, foreignObjectProps, onClickNode })
+          renderTreeNode({ ...rd3tProps, foreignObjectProps, ...rest })
         }
       />
     </div>
