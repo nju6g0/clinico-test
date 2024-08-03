@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/clinico-test/static/css/main.fa349b6b.css",
-    "main.js": "/clinico-test/static/js/main.796b1d9f.js",
+    "main.css": "/clinico-test/static/css/main.7f40235e.css",
+    "main.js": "/clinico-test/static/js/main.7335b05e.js",
     "index.html": "/clinico-test/index.html",
-    "main.fa349b6b.css.map": "/clinico-test/static/css/main.fa349b6b.css.map",
-    "main.796b1d9f.js.map": "/clinico-test/static/js/main.796b1d9f.js.map"
+    "main.7f40235e.css.map": "/clinico-test/static/css/main.7f40235e.css.map",
+    "main.7335b05e.js.map": "/clinico-test/static/js/main.7335b05e.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa349b6b.css",
-    "static/js/main.796b1d9f.js"
+    "static/css/main.7f40235e.css",
+    "static/js/main.7335b05e.js"
   ]
 }
