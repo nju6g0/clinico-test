@@ -11,4 +11,5 @@
  `npm install && npm start`
 
  ### 啟動 json-server
+ `npm install -g json-server@0.17.4`
  `npm run server`
